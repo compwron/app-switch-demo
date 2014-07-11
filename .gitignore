@@ -24,10 +24,3 @@ Pods
 
 appledocs
 
-# This file is needed for signing the ipa with our enterprise cert;
-# you can get it from the iOS Developer Center.
-EverybodyVenmo.mobileprovision
-
-# This file should contain your HockeyApp auth
-# token from https://rink.hockeyapp.net/manage/auth_tokens
-.hockeyapp
