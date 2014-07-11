@@ -1,10 +1,4 @@
-//
-//  AAAppDelegate.m
-//  glove
-//
-//  Created by Linda Goldstein on 7/11/14.
-//  Copyright (c) 2014 nope. All rights reserved.
-//
+
 
 #import "AAAppDelegate.h"
 
@@ -45,7 +39,8 @@
 
 - (BOOL)application:(UIApplication *)__unused application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
-    NSArray *authorizedApps = @[@"com.nope.helmet", @"com.nope.boot"];
+    NSArray *authorizedApps = @[@"com.asdf.helmet", @"com.asdf.boot"];
+    NSLog(sourceApplication);
     
     if ([authorizedApps containsObject:sourceApplication]){
         NSArray *components = [[url absoluteString] componentsSeparatedByString:@"?"];

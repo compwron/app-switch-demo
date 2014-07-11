@@ -19,7 +19,7 @@
 }
 
 - (void)fetchClientToken{
-    NSArray *authorizedApps = @[@"helmet", @"glove", @"boot"];
+    NSArray *authorizedApps = @[@"helmet", @"boot"];
     self.supportedURLSchemes = authorizedApps;
     [self addAppSwitchButtons];
 }

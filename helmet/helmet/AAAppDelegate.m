@@ -1,12 +1,6 @@
-//
-//  AAAppDelegate.m
-//  helmet
-//
-//  Created by Linda Goldstein on 7/11/14.
-//  Copyright (c) 2014 nope. All rights reserved.
-//
 
 #import "AAAppDelegate.h"
+#import "AAViewController.h"
 
 @implementation AAAppDelegate
 
@@ -41,6 +35,33 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *) __unused application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+    NSLog(@"%@",launchOptions);
+    
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)__unused application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
+    NSArray *keyValuePairsFromSource = [[url query] componentsSeparatedByString:@"?"];
+    NSMutableDictionary *urlKeyValueDictionary = [[NSMutableDictionary alloc] init];
+    
+    for (NSString *keyValuePair in keyValuePairsFromSource) {
+        NSArray *keyValuePairArray = [keyValuePair componentsSeparatedByString:@"="];
+        if ([keyValuePairArray count] == 2) {
+            urlKeyValueDictionary[keyValuePairArray[0]] = keyValuePairArray[1];
+        }
+    }
+    
+    AAViewController *chooserController =  (AAViewController *)self.window.rootViewController;
+    
+    chooserController.sourceSuccessURL = [NSURL URLWithString:urlKeyValueDictionary[@"x-success"]];
+    chooserController.sourceName = urlKeyValueDictionary[@"x-source"];
+    [[self.window.rootViewController view] setNeedsDisplay];
+    
+    return YES;
 }
 
 @end
